@@ -40,14 +40,16 @@ jobs:
             git log --graph -n 10 --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s" > log.txt
             cat log.txt
   on_success:
-    put: pull-request
+    put: update-status
+    resource: pull-request
     params:
       path: pull-request
       status: success
-    # get_params: {skip_download: true}
+    get_params: {skip_download: true}
   on_failure:
-    put: pull-request
+    put: update-status
+    resource: pull-request
     params:
       path: pull-request
       status: failure
-    # get_params: {skip_download: true}
+    get_params: {skip_download: true}
