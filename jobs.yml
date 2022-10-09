@@ -1,1 +1,2 @@
-- concourse-testing: 1
+- concourse-testing:
+    pr: hello
