@@ -31,7 +31,7 @@ jobs:
     - var: pr
       values: ((.:pull_requests))
     set_pipeline: ((repo-name))
-    file: ci/ci/pipelines/child.yml
+    file: ci/ci/pipelines/((pipeline))
     instance_vars:
-      number: ((.:pr.number))
+      pr-number: ((.:pr.number))
       repo-name: ((repo-name))
