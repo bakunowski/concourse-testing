@@ -8,7 +8,7 @@ resources:
 - name: pull-request
   type: pull-request
   source:
-    repository: bakunowski/go-retry
+    repository: bakunowski/((repo-name))
     access_token: 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
     number: ((pr-number))
 
@@ -17,7 +17,7 @@ jobs:
   plan:
   - get: pull-request
     trigger: true
-  - put: pull-request-status
+  - put: update-status
     resource: pull-request
     params:
       path: pull-request

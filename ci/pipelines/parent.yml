@@ -16,8 +16,9 @@ jobs:
   - across:
     - var: job
       values: ((.:config.jobs))
-    set_pipeline: ((.:job.name))
-    file: home/ci/pipelines/pr-parent.yml
-    instance_vars:
+    do:
+    - set_pipeline: ((.:job.name))
+      file: home/ci/pipelines/pr-parent.yml
+      instance_vars:
         repo-name: ((.:job.name))
         pipeline: ((.:job.pr-job))
