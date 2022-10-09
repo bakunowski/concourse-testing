@@ -9,7 +9,7 @@ resources:
   type: pull-request
   source:
     repository: itsdalmo/test-repository
-    access_token: ((github-access-token))
+    access_token: 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
     number: ((number))
 
 jobs:
