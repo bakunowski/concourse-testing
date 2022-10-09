@@ -1,1 +1,2 @@
-concourse-testing: true
+[{"concourse-testing": 1}]
+
