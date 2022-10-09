@@ -16,9 +16,10 @@ jobs:
   - across:
     - var: job
       values: ((.:config.jobs))
-    set_pipeline: prs
-    file: ci/ci/pipelines/pr-parent.yml
-    instance_vars: {repo-name: ((.:job.name))}
+    set_pipeline: ((.:job.name))
+    file: home/ci/pipelines/pr-parent.yml
+    instance_vars:
+        repo-name: ((.:job.name))
 
     # do:  # takes a list of steps
     # - task: saying-hello
