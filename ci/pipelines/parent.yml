@@ -15,6 +15,8 @@ resources:
   type: git
   source:
     uri: https://github.com/bakunowski/concourse-testing
+    username: bakunowski
+    password: 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
 
 jobs:
 - name: update-pr-pipelines

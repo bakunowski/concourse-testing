@@ -8,7 +8,7 @@ resources:
 - name: pull-request
   type: pull-request
   source:
-    repository: itsdalmo/test-repository
+    repository: bakunowski/go-retry
     access_token: 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
     number: ((number))
 
