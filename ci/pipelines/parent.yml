@@ -9,7 +9,7 @@ resources:
   type: pull-request
   source:
     repository: bakunowski/go-retry
-    access_token: ((github-access-token))
+    access_token: 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
 
 - name: ci
   type: git
