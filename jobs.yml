@@ -1,3 +1,5 @@
 jobs:
-- name: "go-retry"
+- name: go-retry
+  pr-job: child.yml
+- name: dotfiles
   pr-job: child.yml
