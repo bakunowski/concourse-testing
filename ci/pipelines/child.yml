@@ -42,12 +42,12 @@ jobs:
   on_success:
     put: pull-request
     params:
-      path: pr
+      path: pull-request
       status: success
     # get_params: {skip_download: true}
   on_failure:
     put: pull-request
     params:
-      path: pr
+      path: pull-request
       status: failure
     # get_params: {skip_download: true}
