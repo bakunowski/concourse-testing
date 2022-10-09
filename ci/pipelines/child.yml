@@ -10,7 +10,7 @@ resources:
   source:
     repository: bakunowski/go-retry
     access_token: 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
-    number: ((number))
+    number: ((pr-number))
 
 jobs:
 - name: test
