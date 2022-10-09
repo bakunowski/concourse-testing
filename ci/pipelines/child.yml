@@ -12,6 +12,7 @@ resources:
     access_token: ((github-access-token))
     number: ((number))
 
+jobs:
 - name: test
   plan:
   - get: pull-request
