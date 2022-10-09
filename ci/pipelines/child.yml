@@ -44,10 +44,10 @@ jobs:
     params:
       path: pr
       status: success
-    get_params: {skip_download: true}
+    # get_params: {skip_download: true}
   on_failure:
     put: pull-request
     params:
       path: pr
       status: failure
-    get_params: {skip_download: true}
+    # get_params: {skip_download: true}

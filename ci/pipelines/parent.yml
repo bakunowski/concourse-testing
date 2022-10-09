@@ -22,6 +22,7 @@ jobs:
 - name: update-pr-pipelines
   plan:
   - get: ci
+    trigger: true
   - get: pull-requests
     trigger: true
   - load_var: pull_requests
