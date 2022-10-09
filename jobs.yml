@@ -1,1 +1,3 @@
-concourse-testing
+concourse-testing:
+  - pr: something
+  - master: something else
