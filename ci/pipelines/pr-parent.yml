@@ -1,0 +1,37 @@
+resource_types:
+- name: pull-request
+  type: registry-image
+  source:
+    repository: aoldershaw/github-pr-resource
+
+resources:
+- name: pull-requests
+  type: pull-request
+  source:
+    repository: bakunowski/((repo-name))
+    access_token: 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
+
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/bakunowski/concourse-testing
+    username: bakunowski
+    password: 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
+
+jobs:
+- name: update-pr-pipelines
+  plan:
+  - get: ci
+    trigger: true
+  - get: pull-requests
+    trigger: true
+  - load_var: pull_requests
+    file: pull-requests/prs.json
+  - across:
+    - var: pr
+      values: ((.:pull_requests))
+    set_pipeline: prs
+    file: ci/ci/pipelines/child.yml
+    instance_vars:
+      number: ((.:pr.number))
+      repo-name: ((repo-name))

@@ -1,35 +1,33 @@
-resource_types:
-- name: pull-request
-  type: registry-image
-  source:
-    repository: aoldershaw/github-pr-resource
-
 resources:
-- name: pull-requests
-  type: pull-request
-  source:
-    repository: bakunowski/go-retry
-    access_token: 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
-
-- name: ci
-  type: git
-  source:
-    uri: https://github.com/bakunowski/concourse-testing
-    username: bakunowski
-    password: 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
+  - name: home
+    type: git
+    source:
+      uri: https://github.com/bakunowski/concourse-testing
+      username: bakunowski
+      password: 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
 
 jobs:
-- name: update-pr-pipelines
+- name: update-all-pipelines
   plan:
-  - get: ci
+  - get: home
     trigger: true
-  - get: pull-requests
-    trigger: true
-  - load_var: pull_requests
-    file: pull-requests/prs.json
+  - load_var: config
+    file: home/jobs.yml
   - across:
-    - var: pr
-      values: ((.:pull_requests))
+    - var: job
+      values: ((.:config.jobs))
     set_pipeline: prs
-    file: ci/ci/pipelines/child.yml
-    instance_vars: {number: ((.:pr.number))}
+    file: ci/ci/pipelines/pr-parent.yml
+    instance_vars: {repo-name: ((.:job.name))}
+
+    # do:  # takes a list of steps
+    # - task: saying-hello
+    #   config:
+    #     platform: linux
+    #     image_resource:
+    #       type: mock
+    #       source:
+    #         mirror_self: true
+    #     run:
+    #       path: echo
+    #       args: ["Hello ((.:job.name))!"]
