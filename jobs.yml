@@ -1,5 +1,7 @@
 jobs:
 - name: go-retry
   pr-job: child.yml
+  head-job: head-child.yml
 - name: dotfiles
   pr-job: child.yml
+  head-job: head-child.yml
