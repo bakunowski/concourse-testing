@@ -5,6 +5,8 @@ resources:
       uri: https://github.com/bakunowski/concourse-testing
       username: bakunowski
       password: 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
+      # TODO:
+      # paths:
 
 jobs:
 - name: update-all-pipelines
@@ -18,13 +20,13 @@ jobs:
       values: ((.:config.jobs))
     do:
     - set_pipeline: ((.:job.name))
-      file: home/ci/pipelines/pr-parent.yml
+      file: home/update-prs.yml
       vars:
         repo-name: ((.:job.name))
-        pipeline: child.yml
+        pipeline: ((.:job.pr))
       instance_vars:
         purpose: update-pr-pipelines
     - set_pipeline: ((.:job.name))
-      file: home/ci/pipelines/((.:job.head-job))
+      file: home/pipelines/((.:job.master))
       instance_vars:
         purpose: master ci
