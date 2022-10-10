@@ -19,13 +19,12 @@ jobs:
     do:
     - set_pipeline: ((.:job.name))
       file: home/ci/pipelines/pr-parent.yml
-      instance_vars:
+      vars:
         repo-name: ((.:job.name))
         pipeline: child.yml
+      instance_vars:
         purpose: update-pr-pipelines
     - set_pipeline: ((.:job.name))
       file: home/ci/pipelines/((.:job.head-job))
       instance_vars:
-        repo-name: ((.:job.name))
-        pipeline: ((.:job.head-job))
         purpose: master ci
