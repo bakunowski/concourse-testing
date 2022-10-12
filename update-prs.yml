@@ -9,14 +9,12 @@ resources:
   type: pull-request
   source:
     repository: bakunowski/((repo-name))
-    access_token: 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
+    access_token: ((github-token))
 
 - name: home
   type: git
   source:
     uri: https://github.com/bakunowski/concourse-testing
-    username: bakunowski
-    password: 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
 
 jobs:
 - name: update-pr-pipelines
@@ -34,5 +32,6 @@ jobs:
     file: home/pipelines/((pipeline))
     vars:
       repo-name: ((repo-name))
+      github-token: ((github-token))
     instance_vars:
       pr-number: ((.:pr.number))

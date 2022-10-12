@@ -9,7 +9,7 @@ resources:
   type: pull-request
   source:
     repository: bakunowski/((repo-name))
-    access_token: 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
+    access_token: ((github-token))
     number: ((pr-number))
 
 jobs:

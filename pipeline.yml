@@ -3,10 +3,6 @@ resources:
     type: git
     source:
       uri: https://github.com/bakunowski/concourse-testing
-      username: bakunowski
-      password: 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
-      # TODO:
-      # paths:
 
 jobs:
 - name: update-all-pipelines
@@ -24,6 +20,7 @@ jobs:
       vars:
         repo-name: ((.:job.name))
         pipeline: ((.:job.pr))
+        github-token: ((token))
       instance_vars:
         purpose: update-pr-pipelines
     - set_pipeline: ((.:job.name))
