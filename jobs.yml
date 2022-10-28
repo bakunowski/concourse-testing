@@ -5,3 +5,6 @@ jobs:
 - name: dotfiles
   pr: pr.yml
   master: master.yml
+- name: crkbd
+  pr: pr.yml
+  master: master.yml
