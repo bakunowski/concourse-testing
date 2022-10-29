@@ -15,7 +15,7 @@ run:
     - -ec
     - |
       cd source-code
-      if [ "$(go fmt . | wc -l)" -eq 0 ]; then
+      if [ "$(go fmt . | wc -l)" -gt 0 ]; then
           echo "Please make sure your code is formatted using gofmt"
           exit 1
       fi
