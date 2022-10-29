@@ -1,0 +1,21 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: golang
+
+inputs:
+- name: source-code
+
+run:
+  path: /bin/sh
+  args:
+    - -ec
+    - |
+      cd source-code
+      if [ "$(go fmt . | wc -l)" -eq 0 ]; then
+          echo "Please make sure your code is formatted using gofmt"
+          exit 1
+      fi

@@ -1,0 +1,48 @@
+resources:
+- name: source-code
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/bakunowski/go-retry
+
+- name: ci
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/bakunowski/concourse-testing
+
+jobs:
+- name: record-metrics
+  plan:
+  - get: source-code
+    trigger: true
+  - get: ci
+    trigger: false
+  - task: record-metrics
+    file: ci/tasks/record-metrics.yml
+
+- name: ensure-ecr-repo-exists
+  plan:
+  - get: source-code
+    trigger: true
+  - get: ci
+    trigger: false
+  - task: ecr-repo
+    file: ci/tasks/ecr-repo.yml
+
+- name: run-fmt
+  plan:
+  - in_parallel:
+      steps:
+      - get: source-code
+        trigger: true
+      - get: ci
+        trigger: false
+      - task: fmt
+        file: ci/tasks/gofmt.yml
+        input_mapping:
+          source-code: source-code
+      - task: lint
+        file: ci/tasks/go-lint.yml
+        input_mapping:
+          source-code: source-code

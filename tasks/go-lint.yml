@@ -1,0 +1,17 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: golangci/golangci-lint
+    tag: v1.49
+
+inputs:
+- name: source-code
+
+run:
+  path: golangci-lint
+  dir: source-code
+  args:
+    - run
